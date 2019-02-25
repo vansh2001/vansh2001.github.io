@@ -97,7 +97,7 @@ var KEY_CODE;
 (function (KEY_CODE) {
     KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 39] = "RIGHT_ARROW";
     KEY_CODE[KEY_CODE["LEFT_ARROW"] = 37] = "LEFT_ARROW";
-    KEY_CODE[KEY_CODE["SPACE_BAR"] = 32] = "SPACE_BAR";
+    KEY_CODE[KEY_CODE["SPACE_BAR"] = 40] = "SPACE_BAR";
 })(KEY_CODE || (KEY_CODE = {}));
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
@@ -273,7 +273,7 @@ module.exports = "header {\n  padding-top: 20px;\n  font-weight: bold;\n  font-s
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  Instructions\n</header>\n<div>\n  <p *ngIf=\"this.nextInstruction==0\">1. Lean Forward and place your forehead against the marked area. </p>\n  <p *ngIf=\"this.nextInstruction==1\">2. Look into the testing screen</p>\n  <p *ngIf=\"this.nextInstruction==2\">3. Increase the size of of the testing words usign the \"+\" sign on the keyboard, and decrease using the \"-\" sign.</p>\n  <p *ngIf=\"this.nextInstruction==3\">4. Press the \"Spacebar\" key when the words becomes just a little blurry for you.</p>\n</div>\n\n<div class=\"next_page\">\n    <p *ngIf=\"this.nextInstruction==3\"> Press \"Spacebar\" to Start Testing</p>\n    <p *ngIf=\"this.nextInstruction != 3\">Press Right Arrow for next page <img src=\"https://img.icons8.com/ios/50/000000/circled-right.png\"></p>\n</div>\n"
+module.exports = "<header>\n  Instructions\n</header>\n<div>\n  <p *ngIf=\"this.nextInstruction==0\">1. Lean Forward and place your forehead against the marked area. </p>\n  <p *ngIf=\"this.nextInstruction==1\">2. Look into the testing screen</p>\n  <p *ngIf=\"this.nextInstruction==2\">3. Increase the size of of the testing words usign the \"+\" sign on the keyboard, and decrease using the \"-\" sign.</p>\n  <p *ngIf=\"this.nextInstruction==3\">4. Press the \"Spacebar\" key when the words becomes just a little blurry for you.</p>\n</div>\n\n<div class=\"next_page\">\n    <p *ngIf=\"this.nextInstruction==3\"> Press \"Down Arrow\" to Start Testing</p>\n    <p *ngIf=\"this.nextInstruction != 3\">Press Right Arrow for next page <img src=\"https://img.icons8.com/ios/50/000000/circled-right.png\"></p>\n</div>\n"
 
 /***/ }),
 
@@ -296,7 +296,7 @@ var KEY_CODE;
 (function (KEY_CODE) {
     KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 39] = "RIGHT_ARROW";
     KEY_CODE[KEY_CODE["LEFT_ARROW"] = 37] = "LEFT_ARROW";
-    KEY_CODE[KEY_CODE["SPACE_BAR"] = 32] = "SPACE_BAR";
+    KEY_CODE[KEY_CODE["SPACE_BAR"] = 40] = "SPACE_BAR";
 })(KEY_CODE || (KEY_CODE = {}));
 var InstructionsComponent = /** @class */ (function () {
     function InstructionsComponent() {
@@ -382,7 +382,7 @@ var KEY_CODE;
 (function (KEY_CODE) {
     KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 39] = "RIGHT_ARROW";
     KEY_CODE[KEY_CODE["LEFT_ARROW"] = 37] = "LEFT_ARROW";
-    KEY_CODE[KEY_CODE["SPACE_BAR"] = 32] = "SPACE_BAR";
+    KEY_CODE[KEY_CODE["SPACE_BAR"] = 40] = "SPACE_BAR";
 })(KEY_CODE || (KEY_CODE = {}));
 var UsertestComponent = /** @class */ (function () {
     function UsertestComponent() {
