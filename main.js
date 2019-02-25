@@ -493,7 +493,7 @@ module.exports = "\nheader {\n  padding-top: 20px;\n  font-weight: bold;\n  font
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  Disclamer\n</header>\n\n<div class=\"warning_message\">\n  <p>The test result provided by eyeBot is not a replacement for an optometrist and is not a prescription.</p>\n</div>\n\n<div class=\"next_page\">\n  <p>Press \"Spacebar to continue. </p>\n</div>\n"
+module.exports = "<header>\n  Disclamer\n</header>\n\n<div class=\"warning_message\">\n  <p>The test result provided by eyeBot is not a replacement for an optometrist and is not a prescription.</p>\n</div>\n\n<div class=\"next_page\">\n  <p>Press \"Spacebar\" to continue. </p>\n</div>\n"
 
 /***/ }),
 
