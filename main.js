@@ -308,6 +308,7 @@ var InstructionsComponent = /** @class */ (function () {
         else if (event.keyCode === KEY_CODE.LEFT_ARROW) {
             this.nextInstruction--;
         }
+        console.log("In instructions");
         //Limit the instructions from 0 to 3 incremnts
         if (this.nextInstruction > 3) { //if the counter greater than the last instruction decrement it
             this.nextInstruction--;
