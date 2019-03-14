@@ -296,7 +296,6 @@ var KEY_CODE;
 (function (KEY_CODE) {
     KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 39] = "RIGHT_ARROW";
     KEY_CODE[KEY_CODE["LEFT_ARROW"] = 37] = "LEFT_ARROW";
-    KEY_CODE[KEY_CODE["SPACE_BAR"] = 32] = "SPACE_BAR";
 })(KEY_CODE || (KEY_CODE = {}));
 var InstructionsComponent = /** @class */ (function () {
     function InstructionsComponent() {
