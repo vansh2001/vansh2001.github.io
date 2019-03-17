@@ -295,8 +295,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var KEY_CODE;
 (function (KEY_CODE) {
-    KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 39] = "RIGHT_ARROW";
-    KEY_CODE[KEY_CODE["LEFT_ARROW"] = 37] = "LEFT_ARROW";
+    KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 68] = "RIGHT_ARROW";
+    KEY_CODE[KEY_CODE["LEFT_ARROW"] = 65] = "LEFT_ARROW";
 })(KEY_CODE || (KEY_CODE = {}));
 var InstructionsComponent = /** @class */ (function () {
     function InstructionsComponent() {
