@@ -109,6 +109,7 @@ var AppComponent = /** @class */ (function () {
     }
     AppComponent.prototype.keyEvent = function (event) {
         // console.log(this.counter);
+        console.log('show:', event.keyCode);
         if (event.keyCode === KEY_CODE.SPACE_BAR) {
             if (this.counter === 0) {
                 this.showWarning = false;
@@ -124,7 +125,7 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.ngOnInit = function () { };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])('window:keypress', ['$event']),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])('window:keydown', ['$event']),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Function),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [KeyboardEvent]),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:returntype", void 0)
@@ -302,6 +303,7 @@ var InstructionsComponent = /** @class */ (function () {
         this.nextInstruction = 0; //variable to increment to the next instruction
     }
     InstructionsComponent.prototype.keyEvent = function (event) {
+        console.log('show:', event.keyCode);
         if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
             this.nextInstruction++;
         }
@@ -391,7 +393,7 @@ var UsertestComponent = /** @class */ (function () {
         this.showSelectedResult = false;
     }
     UsertestComponent.prototype.keyEvent = function (event) {
-        // console.log('show:', this.show);
+        console.log('show:', event.keyCode);
         if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
             this.show++;
         }
