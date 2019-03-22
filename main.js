@@ -74,7 +74,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-warning *ngIf=showWarning></app-warning>\n<app-instructions *ngIf=showInstructions></app-instructions>\n<app-usertest *ngIf=showUsertest></app-usertest>\n<!-- <router-outlet></router-outlet> -->\n"
+module.exports = "<!-- <app-warning *ngIf=showWarning></app-warning> -->\n<!-- <app-instructions *ngIf=showInstructions></app-instructions> -->\n<app-usertest *ngIf=showWarning></app-usertest>\n<!-- showUsertest -->\n<!-- <router-outlet></router-outlet> -->\n"
 
 /***/ }),
 
@@ -295,8 +295,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var KEY_CODE;
 (function (KEY_CODE) {
-    KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 68] = "RIGHT_ARROW";
-    KEY_CODE[KEY_CODE["LEFT_ARROW"] = 65] = "LEFT_ARROW";
+    KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 39] = "RIGHT_ARROW";
+    KEY_CODE[KEY_CODE["LEFT_ARROW"] = 37] = "LEFT_ARROW";
 })(KEY_CODE || (KEY_CODE = {}));
 var InstructionsComponent = /** @class */ (function () {
     function InstructionsComponent() {
@@ -385,6 +385,8 @@ var KEY_CODE;
     KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 39] = "RIGHT_ARROW";
     KEY_CODE[KEY_CODE["LEFT_ARROW"] = 37] = "LEFT_ARROW";
     KEY_CODE[KEY_CODE["SPACE_BAR"] = 32] = "SPACE_BAR";
+    KEY_CODE[KEY_CODE["PLUS_KEY"] = 187] = "PLUS_KEY";
+    KEY_CODE[KEY_CODE["MINUS_KEY"] = 189] = "MINUS_KEY";
 })(KEY_CODE || (KEY_CODE = {}));
 var UsertestComponent = /** @class */ (function () {
     function UsertestComponent() {
@@ -394,10 +396,10 @@ var UsertestComponent = /** @class */ (function () {
     }
     UsertestComponent.prototype.keyEvent = function (event) {
         console.log('show:', event.keyCode);
-        if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
+        if (event.keyCode === KEY_CODE.PLUS_KEY) {
             this.show++;
         }
-        else if (event.keyCode === KEY_CODE.LEFT_ARROW) {
+        else if (event.keyCode === KEY_CODE.MINUS_KEY) {
             this.show--;
         }
         if (this.show < 1) {
