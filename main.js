@@ -74,7 +74,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <app-warning *ngIf=showWarning></app-warning> -->\n<!-- <app-instructions *ngIf=showInstructions></app-instructions> -->\n<app-usertest ></app-usertest>\n<!-- showUsertest -->\n<!-- <router-outlet></router-outlet> -->\n"
+module.exports = "<!-- <app-warning *ngIf=showWarning></app-warning> -->\n<!-- <app-instructions *ngIf=showInstructions></app-instructions> -->\n<app-usertest *ngIf=showUsertest></app-usertest>\n<app-colorblind *ngIf=showColorBlindness></app-colorblind>\n<app-astigmatism *ngIf=astigmatism></app-astigmatism>\n<!-- showUsertest -->\n<!-- <router-outlet></router-outlet> -->\n"
 
 /***/ }),
 
@@ -98,29 +98,36 @@ var KEY_CODE;
     KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 39] = "RIGHT_ARROW";
     KEY_CODE[KEY_CODE["LEFT_ARROW"] = 37] = "LEFT_ARROW";
     KEY_CODE[KEY_CODE["SPACE_BAR"] = 32] = "SPACE_BAR";
+    KEY_CODE[KEY_CODE["J_KEY"] = 74] = "J_KEY";
+    KEY_CODE[KEY_CODE["K_KEY"] = 75] = "K_KEY";
+    KEY_CODE[KEY_CODE["L_KEY"] = 76] = "L_KEY";
 })(KEY_CODE || (KEY_CODE = {}));
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.title = 'my-app';
-        this.showWarning = true;
+        //showWarning = true;
         this.showInstructions = false;
-        this.showUsertest = false;
-        this.counter = 0;
+        this.showUsertest = true;
+        this.astigmatism = false;
+        this.showColorBlindness = false;
     }
     AppComponent.prototype.keyEvent = function (event) {
         // console.log(this.counter);
         console.log('show:', event.keyCode);
-        if (event.keyCode === KEY_CODE.SPACE_BAR) {
-            if (this.counter === 0) {
-                this.showWarning = false;
-                this.showInstructions = true;
-                this.counter++;
-            }
-            else if (this.counter === 1) {
-                this.showInstructions = false;
-                this.showUsertest = true;
-                this.counter++;
-            }
+        if (event.keyCode === KEY_CODE.L_KEY) {
+            this.astigmatism = true;
+            this.showUsertest = false;
+            this.showColorBlindness = false;
+        }
+        else if (event.keyCode === KEY_CODE.K_KEY) {
+            this.astigmatism = false;
+            this.showUsertest = false;
+            this.showColorBlindness = true;
+        }
+        else if (event.keyCode === KEY_CODE.J_KEY) {
+            this.astigmatism = false;
+            this.showUsertest = true;
+            this.showColorBlindness = false;
         }
     };
     AppComponent.prototype.ngOnInit = function () { };
@@ -164,6 +171,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _instructions_instructions_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./instructions/instructions.component */ "./src/app/instructions/instructions.component.ts");
 /* harmony import */ var _usertest_usertest_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./usertest/usertest.component */ "./src/app/usertest/usertest.component.ts");
 /* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./header/header.component */ "./src/app/header/header.component.ts");
+/* harmony import */ var _colorblind_colorblind_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./colorblind/colorblind.component */ "./src/app/colorblind/colorblind.component.ts");
+/* harmony import */ var _astigmatism_astigmatism_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./astigmatism/astigmatism.component */ "./src/app/astigmatism/astigmatism.component.ts");
+
+
 
 
 
@@ -183,7 +194,9 @@ var AppModule = /** @class */ (function () {
                 _warning_warning_component__WEBPACK_IMPORTED_MODULE_5__["WarningComponent"],
                 _instructions_instructions_component__WEBPACK_IMPORTED_MODULE_6__["InstructionsComponent"],
                 _usertest_usertest_component__WEBPACK_IMPORTED_MODULE_7__["UsertestComponent"],
-                _header_header_component__WEBPACK_IMPORTED_MODULE_8__["HeaderComponent"]
+                _header_header_component__WEBPACK_IMPORTED_MODULE_8__["HeaderComponent"],
+                _colorblind_colorblind_component__WEBPACK_IMPORTED_MODULE_9__["ColorblindComponent"],
+                _astigmatism_astigmatism_component__WEBPACK_IMPORTED_MODULE_10__["AstigmatismComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -194,6 +207,249 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/astigmatism/astigmatism.component.css":
+/*!*******************************************************!*\
+  !*** ./src/app/astigmatism/astigmatism.component.css ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "div {\n  display: inline-block;\n}\n\np {\n  display: inline-block;\n  position: fixed;\n  top: 200px;\n  font-size: 40px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXN0aWdtYXRpc20vYXN0aWdtYXRpc20uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHNCQUFzQjtDQUN2Qjs7QUFFRDtFQUNFLHNCQUFzQjtFQUN0QixnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLGdCQUFnQjtDQUNqQiIsImZpbGUiOiJzcmMvYXBwL2FzdGlnbWF0aXNtL2FzdGlnbWF0aXNtLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJkaXYge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG59XG5cbnAge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgdG9wOiAyMDBweDtcbiAgZm9udC1zaXplOiA0MHB4O1xufVxuIl19 */"
+
+/***/ }),
+
+/***/ "./src/app/astigmatism/astigmatism.component.html":
+/*!********************************************************!*\
+  !*** ./src/app/astigmatism/astigmatism.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-header></app-header>\n<div *ngIf=\"!Stigmatism && !noStigmatism\">\n  <img src=\"../assets/Test-astimatisme.jpg\" alt=\"\">\n</div>\n<p *ngIf=\"!Stigmatism && !noStigmatism\">Do some lines appear blurier than others? (Y(yes)/N(no))</p>\n<p *ngIf=Stigmatism>Looks like you have some form of astigmatism. Please check with your nearst optometrist.</p>\n<p *ngIf=noStigmatism>We have found no astigmatism.</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/astigmatism/astigmatism.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/astigmatism/astigmatism.component.ts ***!
+  \******************************************************/
+/*! exports provided: KEY_CODE, AstigmatismComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KEY_CODE", function() { return KEY_CODE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AstigmatismComponent", function() { return AstigmatismComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var KEY_CODE;
+(function (KEY_CODE) {
+    KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 39] = "RIGHT_ARROW";
+    KEY_CODE[KEY_CODE["LEFT_ARROW"] = 37] = "LEFT_ARROW";
+    KEY_CODE[KEY_CODE["SPACE_BAR"] = 32] = "SPACE_BAR";
+    KEY_CODE[KEY_CODE["Y_KEY"] = 89] = "Y_KEY";
+    KEY_CODE[KEY_CODE["N_KEY"] = 78] = "N_KEY";
+})(KEY_CODE || (KEY_CODE = {}));
+var AstigmatismComponent = /** @class */ (function () {
+    function AstigmatismComponent() {
+        this.noStigmatism = false;
+        this.Stigmatism = false;
+    }
+    AstigmatismComponent.prototype.keyEvent = function (event) {
+        // console.log(this.counter);
+        console.log('show:', event.keyCode);
+        if (event.keyCode === KEY_CODE.Y_KEY) {
+            this.Stigmatism = true;
+            this.noStigmatism = false;
+        }
+        else if (event.keyCode === KEY_CODE.N_KEY) {
+            this.noStigmatism = true;
+            this.Stigmatism = false;
+        }
+    };
+    AstigmatismComponent.prototype.ngOnInit = function () {
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])('window:keydown', ['$event']),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Function),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [KeyboardEvent]),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:returntype", void 0)
+    ], AstigmatismComponent.prototype, "keyEvent", null);
+    AstigmatismComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-astigmatism',
+            template: __webpack_require__(/*! ./astigmatism.component.html */ "./src/app/astigmatism/astigmatism.component.html"),
+            styles: [__webpack_require__(/*! ./astigmatism.component.css */ "./src/app/astigmatism/astigmatism.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], AstigmatismComponent);
+    return AstigmatismComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/colorblind/colorblind.component.css":
+/*!*****************************************************!*\
+  !*** ./src/app/colorblind/colorblind.component.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "div {\n  display: inline-block;\n}\n\n.colorblind_question {\n  display: inline-block;\n  font-size: 35px;\n  position: fixed;\n  top:200px;\n}\n\n.question, .displayResult {\n  padding-left: 60px;\n}\n\n.displayResult{\n  font-weight: bold;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29sb3JibGluZC9jb2xvcmJsaW5kLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxzQkFBc0I7Q0FDdkI7O0FBRUQ7RUFDRSxzQkFBc0I7RUFDdEIsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixVQUFVO0NBQ1g7O0FBRUQ7RUFDRSxtQkFBbUI7Q0FDcEI7O0FBRUQ7RUFDRSxrQkFBa0I7Q0FDbkIiLCJmaWxlIjoic3JjL2FwcC9jb2xvcmJsaW5kL2NvbG9yYmxpbmQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImRpdiB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbn1cblxuLmNvbG9yYmxpbmRfcXVlc3Rpb24ge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGZvbnQtc2l6ZTogMzVweDtcbiAgcG9zaXRpb246IGZpeGVkO1xuICB0b3A6MjAwcHg7XG59XG5cbi5xdWVzdGlvbiwgLmRpc3BsYXlSZXN1bHQge1xuICBwYWRkaW5nLWxlZnQ6IDYwcHg7XG59XG5cbi5kaXNwbGF5UmVzdWx0e1xuICBmb250LXdlaWdodDogYm9sZDtcbn1cbiJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/colorblind/colorblind.component.html":
+/*!******************************************************!*\
+  !*** ./src/app/colorblind/colorblind.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-header></app-header>\n<div class=\"pictures\" *ngIf=\"!end && !NotColorBlind\">\n  <img src=\"/assets/colorblind_pics/plate{{plate_number}}.png\" alt=\"plate{{plate_number}}\">\n</div>\n<div class=\"colorblind_question\">\n  <p class=\"displayResult\" *ngIf=\"end && !NotColorBlind\">{{displayResult}}</p>\n  <p *ngIf=\"!end && !NotColorBlind\">Do you see this number <b> {{result}} </b> (Y - yes /N- no)?</p>\n  <p class=\"question\" *ngIf=\"end && !NotColorBlind\">Please go to your nearest eye doctor or call 1800-000-000 for more help, our tests indicated\n    a possible chance of color blindness .</p>\n  <p class=\"question\" *ngIf=\"NotColorBlind\">You are all set! Our tests do not detect color blindness.</p>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/colorblind/colorblind.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/colorblind/colorblind.component.ts ***!
+  \****************************************************/
+/*! exports provided: KEY_CODE, ColorblindComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KEY_CODE", function() { return KEY_CODE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ColorblindComponent", function() { return ColorblindComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var KEY_CODE;
+(function (KEY_CODE) {
+    KEY_CODE[KEY_CODE["RIGHT_ARROW"] = 39] = "RIGHT_ARROW";
+    KEY_CODE[KEY_CODE["LEFT_ARROW"] = 37] = "LEFT_ARROW";
+    KEY_CODE[KEY_CODE["SPACE_BAR"] = 32] = "SPACE_BAR";
+    KEY_CODE[KEY_CODE["Y_KEY"] = 89] = "Y_KEY";
+    KEY_CODE[KEY_CODE["N_KEY"] = 78] = "N_KEY";
+})(KEY_CODE || (KEY_CODE = {}));
+var ColorblindComponent = /** @class */ (function () {
+    function ColorblindComponent() {
+        this.plate_number = 1;
+        this.result = 12;
+        this.case_val = 1;
+        this.end = 0;
+        this.NotColorBlind = 0;
+        this.displayResult = "";
+    }
+    ColorblindComponent.prototype.keyEvent = function (event) {
+        // console.log(this.counter);
+        console.log('show:', event.keyCode);
+        if (event.keyCode === KEY_CODE.Y_KEY) {
+            this.case_val++;
+        }
+        else if (event.keyCode === KEY_CODE.N_KEY) {
+            this.end = 1;
+        }
+        switch (this.case_val) {
+            case 1:
+                this.result = 12;
+                this.plate_number = 1;
+                this.displayResult = "Everyone should see number 12";
+                break;
+            case 2:
+                this.result = 8;
+                this.plate_number = 2;
+                this.displayResult = "Red-green deficiency: 3";
+                break;
+            case 3:
+                this.result = 29;
+                this.plate_number = 3;
+                this.displayResult = "Red-green deficiency:70";
+                break;
+            case 4:
+                this.result = 5;
+                this.plate_number = 4;
+                this.displayResult = "Red-green deficiency: 2";
+                break;
+            case 5:
+                this.result = 3;
+                this.plate_number = 5;
+                this.displayResult = "Red-green deficiency: 5";
+                break;
+            case 6:
+                this.result = 15;
+                this.plate_number = 6;
+                this.displayResult = "Red-green deficiency: 17";
+                break;
+            case 7:
+                this.result = 74;
+                this.plate_number = 7;
+                this.displayResult = "Red-green deficiency: 21";
+                break;
+            case 8:
+                this.result = 6;
+                this.plate_number = 8;
+                this.displayResult = "Red-green deficiency: most people don’t see anything or see something wrong.";
+                break;
+            case 9:
+                this.result = 45;
+                this.plate_number = 9;
+                this.displayResult = "Red-green deficiency: most people don’t see anything or see something wrong.";
+                break;
+            case 10:
+                this.result = 5;
+                this.plate_number = 10;
+                this.displayResult = "Red-green deficiency: 5";
+                break;
+            case 11:
+                this.result = 7;
+                this.plate_number = 11;
+                this.displayResult = "Red-green deficiency: most people don’t see anything or see something wrong.";
+                break;
+            case 12:
+                this.result = 16;
+                this.plate_number = 12;
+                this.displayResult = "Red-green deficiency: most people don’t see anything or see something wrong.";
+                break;
+            case 13:
+                this.result = 73;
+                this.plate_number = 13;
+                this.displayResult = "Red-green deficiency: most people don’t see anything or see something wrong.";
+                break;
+            case 14:
+                this.NotColorBlind = 1;
+                break;
+            default:
+                break;
+        }
+    };
+    ColorblindComponent.prototype.ngOnInit = function () { };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])('window:keydown', ['$event']),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Function),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [KeyboardEvent]),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:returntype", void 0)
+    ], ColorblindComponent.prototype, "keyEvent", null);
+    ColorblindComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-colorblind',
+            template: __webpack_require__(/*! ./colorblind.component.html */ "./src/app/colorblind/colorblind.component.html"),
+            styles: [__webpack_require__(/*! ./colorblind.component.css */ "./src/app/colorblind/colorblind.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], ColorblindComponent);
+    return ColorblindComponent;
 }());
 
 
